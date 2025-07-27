@@ -64,8 +64,8 @@ export function ISPSidebar() {
             </div>
             {!collapsed && (
               <div>
-                <h2 className="text-lg font-bold">ISP Manager</h2>
-                <p className="text-xs text-muted-foreground">Control Panel</p>
+                <h2 className="text-lg font-bold">Celnet Broadband</h2>
+                <p className="text-xs text-muted-foreground">ISP Billing System</p>
               </div>
             )}
           </div>
