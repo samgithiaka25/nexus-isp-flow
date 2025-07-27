@@ -7,9 +7,12 @@ import {
   Wifi, 
   DollarSign,
   Activity,
-  Shield
+  Shield,
+  LogOut
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useAuth } from '@/hooks/useAuth';
+import { Button } from '@/components/ui/button';
 
 import {
   Sidebar,
@@ -45,6 +48,7 @@ export function ISPSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
+  const { signOut, user } = useAuth();
   
   const collapsed = state === "collapsed";
 
@@ -124,6 +128,24 @@ export function ISPSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        <div className="mt-auto p-4 border-t">
+          {!collapsed && user && (
+            <div className="mb-3">
+              <p className="text-sm font-medium">{user.email}</p>
+              <p className="text-xs text-muted-foreground">Admin</p>
+            </div>
+          )}
+          <Button
+            variant="outline"
+            size={collapsed ? "icon" : "default"}
+            onClick={() => signOut()}
+            className="w-full"
+          >
+            <LogOut className="w-4 h-4" />
+            {!collapsed && <span className="ml-2">Sign Out</span>}
+          </Button>
+        </div>
       </SidebarContent>
     </Sidebar>
   );
